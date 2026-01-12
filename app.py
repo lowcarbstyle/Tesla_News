@@ -147,6 +147,11 @@ def fetch_news(query):
     encoded_query = query.replace(" ", "+")
     rss_url = f"https://news.google.com/rss/search?q={encoded_query}&hl=ja&gl=JP&ceid=JP:ja"
     feed = feedparser.parse(rss_url)
+    
+    # Sort by published date (newest first)
+    if feed.entries:
+        feed.entries.sort(key=lambda x: x.published_parsed, reverse=True)
+        
     return feed.entries
 
 # Main Logic
