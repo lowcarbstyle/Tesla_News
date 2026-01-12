@@ -6,7 +6,8 @@ import datetime
 st.set_page_config(
     page_title="Tesla ニュースダッシュボード",
     page_icon="⚡",
-    layout="wide"
+    layout="wide",
+    initial_sidebar_state="collapsed"
 )
 
 # Custom CSS for Premium Card Design (lowcarb.style clone)
@@ -79,10 +80,27 @@ st.markdown("""
         text-decoration: none;
         transition: background-color 0.2s;
     }
-    
     /* Hide Streamlit components branding if possible */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
+    
+    /* Hide Sidebar completely */
+    [data-testid="stSidebar"] {
+        display: none;
+    }
+    section[data-testid="stSidebar"] > div {
+        height: 100px;
+        width: 100px;
+        position: relative;
+        top: -100px;
+    }
+    /* Hide the top left button to expand sidebar */
+    [data-testid="stSidebarNav"] {
+        display: none !important;
+    }
+    button[kind="header"] {
+        display: none !important;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -90,9 +108,8 @@ st.markdown("""
 st.title("⚡ Tesla ニュース収集ダッシュボード")
 st.markdown("Google ニュース RSS からの最新情報")
 
-# 2. Sidebar Search
-st.sidebar.header("検索設定")
-search_query = st.sidebar.text_input("キーワード", value="Tesla ニュース")
+# Search Settings (Moved from Sidebar)
+search_query = st.text_input("キーワード検索", value="Tesla ニュース")
 
 # 1. Fetch Data
 # Compatibility for different Streamlit versions
