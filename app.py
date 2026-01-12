@@ -126,7 +126,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Application Title
-st.title("⚡ テスラ関連ニュース収集ダッシュボード")
+# st.title("⚡ テスラ関連ニュース収集ダッシュボード")
 # st.markdown("Google ニュース RSS からの最新情報")
 
 # Search Settings (Moved from Sidebar)
