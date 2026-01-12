@@ -4,7 +4,7 @@ import datetime
 
 # Page Configuration
 st.set_page_config(
-    page_title="Tesla ニュースダッシュボード",
+    page_title="テスラ関連ニュース収集ダッシュボード",
     page_icon="⚡",
     layout="wide",
     initial_sidebar_state="collapsed"
@@ -126,7 +126,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Application Title
-# st.title("⚡ Tesla ニュース収集ダッシュボード")
+st.title("⚡ テスラ関連ニュース収集ダッシュボード")
 # st.markdown("Google ニュース RSS からの最新情報")
 
 # Search Settings (Moved from Sidebar)
