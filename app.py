@@ -126,11 +126,11 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Application Title
-# st.title("⚡ テスラ関連ニュース収集ダッシュボード")
+st.title("⚡ テスラ関連ニュース収集ダッシュボード")
 # st.markdown("Google ニュース RSS からの最新情報")
 
 # Search Settings (Moved from Sidebar)
-search_query = st.text_input("テスラニュース検索", value="")
+search_query = st.text_input("テスラニュース検索", value="テスラモデルYスタンダード")
 
 # 1. Fetch Data
 # Compatibility for different Streamlit versions
