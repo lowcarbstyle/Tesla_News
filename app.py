@@ -101,6 +101,27 @@ st.markdown("""
     button[kind="header"] {
         display: none !important;
     }
+    
+    /* Search Widget Styling */
+    /* Label Styling */
+    label[data-testid="stWidgetLabel"] p {
+        font-size: 24px !important;
+        font-weight: 800 !important;
+        color: #333333 !important;
+    }
+    
+    /* Input Box Styling */
+    input[type="text"] {
+        border: 2px solid #555555 !important;
+        background-color: #ffffff !important;
+        border-radius: 4px !important;
+        padding: 10px !important;
+        color: #333333 !important;
+    }
+    input[type="text"]:focus {
+        border-color: #e31937 !important; /* Tesla Red-ish for focus */
+        box-shadow: 0 0 5px rgba(227, 25, 55, 0.4) !important;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -109,7 +130,7 @@ st.markdown("""
 # st.markdown("Google ニュース RSS からの最新情報")
 
 # Search Settings (Moved from Sidebar)
-search_query = st.text_input("キーワード検索", value="Tesla ニュース")
+search_query = st.text_input("テスラニュース検索", value="テスラモデルYスタンダード")
 
 # 1. Fetch Data
 # Compatibility for different Streamlit versions
@@ -196,5 +217,5 @@ if search_query:
     else:
         st.warning(f"'{search_query}' のニュースは見つかりませんでした。")
 else:
-    st.info("サイドバーで検索語を入力してください。")
+    st.info("検索キーワードを入力してください。")
 
