@@ -1,5 +1,6 @@
 import streamlit as st
 import feedparser
+import re
 import datetime
 
 # Page Configuration
@@ -41,6 +42,14 @@ st.markdown("""
         opacity: 0.85;
         background-color: #fafafa;
         cursor: pointer;
+    }
+
+    .card-image {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        border-radius: 4px 4px 0 0;
+        margin-bottom: 12px;
     }
 
     .card-date {
@@ -141,6 +150,15 @@ elif hasattr(st, "experimental_memo"):
 else:
     cache_decorator = st.cache
 
+def extract_image_url(entry):
+    """Extract image URL from summary or other fields."""
+    # Check for <img src="..."> in summary
+    if 'summary' in entry:
+        match = re.search(r'<img[^>]+src="([^">]+)"', entry.summary)
+        if match:
+            return match.group(1)
+    return None
+
 @cache_decorator(ttl=300)
 def fetch_news(query):
     # Encode query for URL
@@ -151,6 +169,10 @@ def fetch_news(query):
     # Sort by published date (newest first)
     if feed.entries:
         feed.entries.sort(key=lambda x: x.published_parsed, reverse=True)
+        
+    # Process entries to add image_url
+    for entry in feed.entries:
+        entry['image_url'] = extract_image_url(entry)
         
     return feed.entries
 
@@ -201,14 +223,23 @@ if search_query:
             # We'll use a clean version for safety/layout.
             summary = entry.get('description', '')  # Google often puts it in description
             
+            # Image HTML
+            image_html = ""
+            if entry.get('image_url'):
+                image_html = f'<img src="{entry.image_url}" class="card-image">'
+            
+            # Cleanup summary: remove all tags for clean text since we use custom image
+            summary_text = re.sub(r'<[^>]+>', '', summary)[:120] + "..."
+
             # Render Card HTML
             # Wrap entire card in an anchor tag for clickability
             card_html = f"""
             <a href="{link}" target="_blank" class="card-link">
                 <div class="card">
+                    {image_html}
                     <div class="card-date">{published}</div>
                     <div class="card-title">{title}</div>
-                    <div class="card-summary">{summary}</div>
+                    <div class="card-summary">{summary_text}</div>
                     <div style="margin-top: 10px;">
                         <span class="read-more">記事を読む</span>
                     </div>
