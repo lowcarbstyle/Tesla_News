@@ -105,8 +105,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Application Title
-st.title("⚡ Tesla ニュース収集ダッシュボード")
-st.markdown("Google ニュース RSS からの最新情報")
+# st.title("⚡ Tesla ニュース収集ダッシュボード")
+# st.markdown("Google ニュース RSS からの最新情報")
 
 # Search Settings (Moved from Sidebar)
 search_query = st.text_input("キーワード検索", value="Tesla ニュース")
@@ -134,7 +134,7 @@ if search_query:
         news_entries = fetch_news(search_query)
 
     if news_entries:
-        st.write(f"{len(news_entries)} 件の記事が見つかりました。")
+        # st.write(f"{len(news_entries)} 件の記事が見つかりました。")
         
         # 3. Display as Cards
         # Compatibility for columns
