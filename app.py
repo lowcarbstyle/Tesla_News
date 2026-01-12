@@ -4,7 +4,7 @@ import datetime
 
 # Page Configuration
 st.set_page_config(
-    page_title="テスラ関連ニュース収集ダッシュボード",
+    page_title="Tesla ニュースダッシュボード",
     page_icon="⚡",
     layout="wide",
     initial_sidebar_state="collapsed"
@@ -38,12 +38,9 @@ st.markdown("""
     }
     
     .card:hover {
-        opacity: 1.0;
-        background-color: #ffffff;
+        opacity: 0.85;
+        background-color: #fafafa;
         cursor: pointer;
-        transform: scale(1.02);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-        z-index: 10;
     }
 
     .card-date {
@@ -129,11 +126,11 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Application Title
-st.title("⚡ テスラ関連ニュース収集ダッシュボード")
+# st.title("⚡ Tesla ニュース収集ダッシュボード")
 # st.markdown("Google ニュース RSS からの最新情報")
 
 # Search Settings (Moved from Sidebar)
-search_query = st.text_input("テスラニュース検索", value="")
+search_query = st.text_input("テスラニュース検索", value="テスラモデルYスタンダード")
 
 # 1. Fetch Data
 # Compatibility for different Streamlit versions
