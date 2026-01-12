@@ -130,7 +130,7 @@ st.markdown("""
 # st.markdown("Google ニュース RSS からの最新情報")
 
 # Search Settings (Moved from Sidebar)
-search_query = st.text_input("テスラニュース検索", value="テスラモデルYスタンダード")
+search_query = st.text_input("テスラニュース検索", value="テスラ")
 
 # 1. Fetch Data
 # Compatibility for different Streamlit versions
